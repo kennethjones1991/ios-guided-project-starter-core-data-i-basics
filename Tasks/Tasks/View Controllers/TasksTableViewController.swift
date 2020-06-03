@@ -7,49 +7,64 @@
 //
 
 import UIKit
+import CoreData
 
 class TasksTableViewController: UITableViewController {
 
     // MARK: - Properties
+    // NOTE! This is not a good, efficient way to do this, as the fetch request
+    // will be executed every time the tasks property is accessed. We will
+    // learn a better way to do this later.
+    var tasks: [Task] {
+        let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
+        let context = CoreDataStack.shared.mainContext
+        do {
+            return try context.fetch(fetchRequest)
+        } catch {
+            NSLog("Error fetching tasks: \(error)")
+            return []
+        }
+    }
     
     
     // MARK: - IBOutlets
     
-    
     // MARK: - View Lifecycle
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        tableView.reloadData()
+    }
 
     
     // MARK: - Table view data source
 
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 0
+        return tasks.count
     }
 
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: TaskTableViewCell.reuseIdentifier, for: indexPath) as? TaskTableViewCell else {
+            fatalError("Can't dequeue cell of type \(TaskTableViewCell.reuseIdentifier)")
+        }
 
-        // Configure the cell...
+        cell.task = tasks[indexPath.row]
 
         return cell
     }
 
-    /*
-    // Override to support editing the table view.
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
-            // Delete the row from the data source
-            tableView.deleteRows(at: [indexPath], with: .fade)
-        } else if editingStyle == .insert {
-            // Create a new instance of the appropriate class, insert it into the array, and add a new row to the table view
-        }    
-    }
-    */
-
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+            let task = tasks[indexPath.row]
+            let moc = CoreDataStack.shared.mainContext
+            moc.delete(task)
+            do {
+                try moc.save()
+                tableView.reloadData()
+            } catch {
+                moc.reset()
+                NSLog("Error saving managed object context: \(error)")
+            }
+        }
     }
 }

@@ -7,6 +7,9 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		618151ED24873A7D00B8FB05 /* Tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 618151EB24873A7D00B8FB05 /* Tasks.xcdatamodeld */; };
+		618151EF24873CAD00B8FB05 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618151EE24873CAD00B8FB05 /* CoreDataStack.swift */; };
+		618151F1248741F600B8FB05 /* Task+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618151F0248741F600B8FB05 /* Task+Convenience.swift */; };
 		CEB451C8244E59CD00E5F9AD /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB451C7244E59CD00E5F9AD /* AppDelegate.swift */; };
 		CEB451CA244E59CD00E5F9AD /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CEB451C9244E59CD00E5F9AD /* SceneDelegate.swift */; };
 		CEB451CF244E59CD00E5F9AD /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CEB451CD244E59CD00E5F9AD /* Main.storyboard */; };
@@ -18,6 +21,9 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		618151EC24873A7D00B8FB05 /* Tasks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tasks.xcdatamodel; sourceTree = "<group>"; };
+		618151EE24873CAD00B8FB05 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
+		618151F0248741F600B8FB05 /* Task+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Convenience.swift"; sourceTree = "<group>"; };
 		CEB451C4244E59CD00E5F9AD /* Tasks.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Tasks.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		CEB451C7244E59CD00E5F9AD /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CEB451C9244E59CD00E5F9AD /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -41,6 +47,16 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		618151EA24873A4800B8FB05 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				618151EB24873A7D00B8FB05 /* Tasks.xcdatamodeld */,
+				618151EE24873CAD00B8FB05 /* CoreDataStack.swift */,
+				618151F0248741F600B8FB05 /* Task+Convenience.swift */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
 		CEB451BB244E59CD00E5F9AD = {
 			isa = PBXGroup;
 			children = (
@@ -60,6 +76,7 @@
 		CEB451C6244E59CD00E5F9AD /* Tasks */ = {
 			isa = PBXGroup;
 			children = (
+				618151EA24873A4800B8FB05 /* Model */,
 				CEB451E1244E5B5700E5F9AD /* Application */,
 				CEB451E2244E5B6000E5F9AD /* View Controllers */,
 				CEB451E3244E5B6900E5F9AD /* Views */,
@@ -168,8 +185,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				618151EF24873CAD00B8FB05 /* CoreDataStack.swift in Sources */,
 				CEB451C8244E59CD00E5F9AD /* AppDelegate.swift in Sources */,
 				CEB451CA244E59CD00E5F9AD /* SceneDelegate.swift in Sources */,
+				618151ED24873A7D00B8FB05 /* Tasks.xcdatamodeld in Sources */,
+				618151F1248741F600B8FB05 /* Task+Convenience.swift in Sources */,
 				CEB451DE244E5B3E00E5F9AD /* TasksTableViewController.swift in Sources */,
 				CEB451DC244E5B3300E5F9AD /* TaskTableViewCell.swift in Sources */,
 				CEB451E0244E5B4800E5F9AD /* CreateTaskViewController.swift in Sources */,
@@ -368,6 +388,19 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		618151EB24873A7D00B8FB05 /* Tasks.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				618151EC24873A7D00B8FB05 /* Tasks.xcdatamodel */,
+			);
+			currentVersion = 618151EC24873A7D00B8FB05 /* Tasks.xcdatamodel */;
+			path = Tasks.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
 	};
 	rootObject = CEB451BC244E59CD00E5F9AD /* Project object */;
 }
