@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		6144C2162489EC890041CE8B /* TaskDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 6144C2152489EC890041CE8B /* TaskDetailViewController.swift */; };
 		618151ED24873A7D00B8FB05 /* Tasks.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 618151EB24873A7D00B8FB05 /* Tasks.xcdatamodeld */; };
 		618151EF24873CAD00B8FB05 /* CoreDataStack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618151EE24873CAD00B8FB05 /* CoreDataStack.swift */; };
 		618151F1248741F600B8FB05 /* Task+Convenience.swift in Sources */ = {isa = PBXBuildFile; fileRef = 618151F0248741F600B8FB05 /* Task+Convenience.swift */; };
@@ -21,6 +22,8 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		6144C2142489D94F0041CE8B /* Tasks 2.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = "Tasks 2.xcdatamodel"; sourceTree = "<group>"; };
+		6144C2152489EC890041CE8B /* TaskDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TaskDetailViewController.swift; sourceTree = "<group>"; };
 		618151EC24873A7D00B8FB05 /* Tasks.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Tasks.xcdatamodel; sourceTree = "<group>"; };
 		618151EE24873CAD00B8FB05 /* CoreDataStack.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CoreDataStack.swift; sourceTree = "<group>"; };
 		618151F0248741F600B8FB05 /* Task+Convenience.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Task+Convenience.swift"; sourceTree = "<group>"; };
@@ -101,6 +104,7 @@
 			children = (
 				CEB451DD244E5B3E00E5F9AD /* TasksTableViewController.swift */,
 				CEB451DF244E5B4800E5F9AD /* CreateTaskViewController.swift */,
+				6144C2152489EC890041CE8B /* TaskDetailViewController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -185,6 +189,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				6144C2162489EC890041CE8B /* TaskDetailViewController.swift in Sources */,
 				618151EF24873CAD00B8FB05 /* CoreDataStack.swift in Sources */,
 				CEB451C8244E59CD00E5F9AD /* AppDelegate.swift in Sources */,
 				CEB451CA244E59CD00E5F9AD /* SceneDelegate.swift in Sources */,
@@ -393,9 +398,10 @@
 		618151EB24873A7D00B8FB05 /* Tasks.xcdatamodeld */ = {
 			isa = XCVersionGroup;
 			children = (
+				6144C2142489D94F0041CE8B /* Tasks 2.xcdatamodel */,
 				618151EC24873A7D00B8FB05 /* Tasks.xcdatamodel */,
 			);
-			currentVersion = 618151EC24873A7D00B8FB05 /* Tasks.xcdatamodel */;
+			currentVersion = 6144C2142489D94F0041CE8B /* Tasks 2.xcdatamodel */;
 			path = Tasks.xcdatamodeld;
 			sourceTree = "<group>";
 			versionGroupType = wrapper.xcdatamodel;

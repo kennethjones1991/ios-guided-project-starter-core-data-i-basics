@@ -13,6 +13,7 @@ class CreateTaskViewController: UIViewController {
     // MARK: - IBOutlets
     @IBOutlet weak var nameTextField: UITextField!
     @IBOutlet weak var notesTextView: UITextView!
+    @IBOutlet weak var prioritySegmentedControl: UISegmentedControl!
     
     // MARK: - Properties
     var complete = false
@@ -35,8 +36,10 @@ class CreateTaskViewController: UIViewController {
             !name.isEmpty else { return }
         
         let notes = notesTextView.text
+        let priorityIndex = prioritySegmentedControl.selectedSegmentIndex
+        let priority = TaskPriority.allCases[priorityIndex]
         
-        Task(name: name, notes: notes, complete: self.complete)
+        Task(name: name, notes: notes, complete: self.complete, priority: priority)
         
         do {
             try CoreDataStack.shared.mainContext.save()
