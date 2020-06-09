@@ -12,6 +12,8 @@ import CoreData
 class TasksTableViewController: UITableViewController {
     
     // MARK: - Properties
+    private let taskController = TaskController()
+    
     lazy var fetchedResultsController: NSFetchedResultsController<Task> = {
         let fetchRequest: NSFetchRequest<Task> = Task.fetchRequest()
         fetchRequest.sortDescriptors = [
@@ -39,6 +41,12 @@ class TasksTableViewController: UITableViewController {
         tableView.reloadData()
     }
     
+    @IBAction func refreshData(_ sender: Any) {
+        taskController.fetchTasksFromServer { (_) in
+            self.refreshControl?.endRefreshing()
+        }
+    }
+    
     // MARK: - Table view data source
     
     override func numberOfSections(in tableView: UITableView) -> Int {
@@ -54,6 +62,7 @@ class TasksTableViewController: UITableViewController {
             fatalError("Can't dequeue cell of type \(TaskTableViewCell.reuseIdentifier)")
         }
         
+        cell.delegate = self
         cell.task = fetchedResultsController.object(at: indexPath)
         
         return cell
@@ -70,6 +79,7 @@ class TasksTableViewController: UITableViewController {
             let task = fetchedResultsController.object(at: indexPath)
             let moc = CoreDataStack.shared.mainContext
             moc.delete(task)
+            taskController.deleteTaskFromServer(task)
             do {
                 try moc.save()
                 tableView.reloadData()
@@ -85,6 +95,12 @@ class TasksTableViewController: UITableViewController {
             if let detailVC = segue.destination as? TaskDetailViewController,
                 let indexPath = tableView.indexPathForSelectedRow {
                 detailVC.task = fetchedResultsController.object(at: indexPath)
+                detailVC.taskController = taskController
+            }
+        } else if segue.identifier == "CreateTaskSegue" {
+            if let navController = segue.destination as? UINavigationController,
+                let createTaskVC = navController.viewControllers.first as? CreateTaskViewController {
+                createTaskVC.taskController = self.taskController
             }
         }
     }
@@ -133,5 +149,11 @@ extension TasksTableViewController: NSFetchedResultsControllerDelegate {
         @unknown default:
             break
         }
+    }
+}
+
+extension TasksTableViewController: TaskTableViewCellDelegate {
+    func didUpdateTask(task: Task) {
+        taskController.sendTaskToServer(task: task)
     }
 }

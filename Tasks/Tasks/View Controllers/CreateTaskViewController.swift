@@ -17,6 +17,7 @@ class CreateTaskViewController: UIViewController {
     
     // MARK: - Properties
     var complete = false
+    var taskController: TaskController?
     
     // MARK: - View Lifecycle
     
@@ -39,7 +40,8 @@ class CreateTaskViewController: UIViewController {
         let priorityIndex = prioritySegmentedControl.selectedSegmentIndex
         let priority = TaskPriority.allCases[priorityIndex]
         
-        Task(name: name, notes: notes, complete: self.complete, priority: priority)
+        let task = Task(name: name, notes: notes, complete: self.complete, priority: priority)
+        taskController?.sendTaskToServer(task: task)
         
         do {
             try CoreDataStack.shared.mainContext.save()

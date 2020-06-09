@@ -8,6 +8,10 @@
 
 import UIKit
 
+protocol TaskTableViewCellDelegate: class {
+    func didUpdateTask(task: Task)
+}
+
 class TaskTableViewCell: UITableViewCell {
     
     // MARK: - IBOutlets
@@ -15,6 +19,7 @@ class TaskTableViewCell: UITableViewCell {
     @IBOutlet weak var completedButton: UIButton!
     
     // MARK: - Properties
+    weak var delegate: TaskTableViewCellDelegate?
     static let reuseIdentifier = "TaskCell"
     
     var task: Task? {
@@ -29,6 +34,7 @@ class TaskTableViewCell: UITableViewCell {
         task.complete.toggle()
         
         completedButton.setImage(task.complete ? UIImage(systemName: "checkmark.circle.fill") : UIImage(systemName: "circle"), for: .normal)
+        delegate?.didUpdateTask(task: task)
         
         do {
             try CoreDataStack.shared.mainContext.save()

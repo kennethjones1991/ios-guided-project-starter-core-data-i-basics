@@ -11,6 +11,7 @@ import UIKit
 class TaskDetailViewController: UIViewController {
     
     // MARK: - Properties
+    var taskController: TaskController?
     var task: Task?
     var wasEdited = false
     
@@ -42,6 +43,7 @@ class TaskDetailViewController: UIViewController {
             task.notes = notes
             let priorityIndex = priorityControl.selectedSegmentIndex
             task.priority = TaskPriority.allCases[priorityIndex].rawValue
+            taskController?.sendTaskToServer(task: task)
             do {
                 try CoreDataStack.shared.mainContext.save()
             } catch {
