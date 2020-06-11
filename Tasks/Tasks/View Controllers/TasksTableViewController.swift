@@ -79,13 +79,17 @@ class TasksTableViewController: UITableViewController {
             let task = fetchedResultsController.object(at: indexPath)
             let moc = CoreDataStack.shared.mainContext
             moc.delete(task)
-            taskController.deleteTaskFromServer(task)
-            do {
-                try moc.save()
-                tableView.reloadData()
-            } catch {
-                moc.reset()
-                NSLog("Error saving managed object context: \(error)")
+            taskController.deleteTaskFromServer(task) { (result) in
+                guard let _ = try? result.get() else { return }
+                DispatchQueue.main.async {
+                    do {
+                        try moc.save()
+                        tableView.reloadData()
+                    } catch {
+                        moc.reset()
+                        NSLog("Error saving managed object context: \(error)")
+                    }
+                }
             }
         }
     }
